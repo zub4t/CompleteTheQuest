@@ -40,6 +40,10 @@ body {
     padding: 12px 13px 18px;
 }
 
+.leaderboard ol {
+    list-style-type: none;
+}
+
 .leaderboard h1 svg {
     width: 25px;
     height: 26px;

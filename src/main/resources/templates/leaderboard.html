@@ -14,9 +14,9 @@
         <h1>
             <svg class="ico-cup">
       <use xlink:href="#cup"></use>
-    </svg> Most active Players
+    </svg> Leaderboard
         </h1>
-        <ol>
+        <ol style="list-style-type: none;">
             <li th:each="userPoint : ${userPoints}">
                 <mark th:text="${userPoint.username}">Jerry Wood</mark>
                 <small th:text="${userPoint.points}">315</small>
