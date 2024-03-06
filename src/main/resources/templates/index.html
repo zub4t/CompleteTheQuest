@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Welcome</title>
+    <link rel="stylesheet" href="/css/quizz.css">
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="container">
+            <h1 class="title">Complete The Quest</h1>
+            <div class="card">
+                <div class="card-head">
+                    <span class="big">   Welcome, <span th:text="${username}"></span>! !</span>
+                </div>
+                <hr>
+                <div class="card-body">
+                    <p>Frase de support motivacional<strong></strong> ?</p>
+                    <p class="text-center"> Alguma outra frase ?.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="questions">
+        <div class="card">
+            <div class="card-head">
+                <span class="normal">Question </span>
+                <span class="question" th:text="${question}"></span>
+            </div>
+            <hr>
+            <div class="card-body">
+                <form th:action="@{/submit}" method="post" style="text-align: center;">
+                    <input type="text" class="input-answer" name="answer" placeholder="My answer is....">
+                    <button type="submit" class="button-answer">Submit</button>
+                </form>
+                <div th:if="${message}" th:text="${message}"></div>
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="/css/leaderboard.css">
+
+</head>
+
+<body>
+
+    <div class="leaderboard">
+        <h1>
+            <svg class="ico-cup">
+      <use xlink:href="#cup"></use>
+    </svg> Most active Players
+        </h1>
+        <ol>
+            <li th:each="userPoint : ${userPoints}">
+                <mark th:text="${userPoint.username}">Jerry Wood</mark>
+                <small th:text="${userPoint.points}">315</small>
+            </li>
+        </ol>
+    </div>
+</body>

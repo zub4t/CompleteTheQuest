@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="/css/login.css">
+
+</head>
+
+<body>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Check if errorMessage exists in the model -->
+            <div th:if="${errorMessage}" style="color: red">
+                <p th:text="${errorMessage}"></p>
+            </div>
+            <h2 class="inactive" style="cursor: pointer">
+                <a href="/login" style="color: black">Sign In</a>
+            </h2>
+            <h2 class="active underlineHover" style="cursor: pointer">
+                <a href="/register" style="color: black">Sign Up</a>
+            </h2>
+            <form th:action="@{/register}" th:object="${user}" method="POST">
+                <input type="text" id="login" class="fadeIn second" name="username" placeholder="username" />
+                <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" />
+                <input type="submit" class="fadeIn fourth" value="Register" />
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
