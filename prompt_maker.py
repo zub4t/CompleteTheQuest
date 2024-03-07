@@ -7,98 +7,50 @@ import random
 json_data = '''
 {
     "topics": [
-        "Array",
-        "String",
-        "Hash Table",
-        "Dynamic Programming",
-        "Math",
-        "Sorting",
-        "Greedy",
-        "Depth-First Search",
-        "Database",
-        "Binary Search",
-        "Tree",
-        "Breadth-First Search",
-        "Matrix",
-        "Bit Manipulation",
-        "Two Pointers",
-        "Binary Tree",
-        "Heap (Priority Queue)",
-        "Prefix Sum",
-        "Stack",
-        "Simulation",
-        "Graph",
-        "Design",
-        "Counting",
-        "Sliding Window",
-        "Backtracking",
-        "Union Find",
-        "Linked List",
-        "Enumeration",
-        "Ordered Set",
-        "Monotonic Stack",
-        "Trie",
-        "Number Theory",
-        "Divide and Conquer",
-        "Recursion",
-        "Bitmask",
-        "Queue",
-        "Segment Tree",
-        "Binary Search Tree",
-        "Memoization",
-        "Geometry",
-        "Binary Indexed Tree",
-        "Hash Function",
-        "Topological Sort",
-        "String Matching",
-        "Combinatorics",
-        "Rolling Hash",
-        "Shortest Path",
-        "Game Theory",
-        "Interactive",
-        "Data Stream",
-        "Brainteaser",
-        "Monotonic Queue",
-        "Randomized",
-        "Merge Sort",
-        "Iterator",
-        "Concurrency",
-        "Doubly-Linked List",
-        "Probability and Statistics",
-        "Quickselect",
-        "Bucket Sort",
-        "Suffix Array",
-        "Minimum Spanning Tree",
-        "Counting Sort",
-        "Shell",
-        "Line Sweep",
-        "Reservoir Sampling",
-        "Strongly Connected Component",
-        "Eulerian Circuit",
-        "Radix Sort",
-        "Rejection Sampling",
-        "Biconnected Component"
+        "The Renaissance",
+        "The Age of Exploration",
+        "The French Revolution",
+        "The Industrial Revolution in Europe",
+        "World War I",
+        "World War II",
+        "The Cold War and its impact on Europe",
+        "The formation and expansion of the European Union",
+        "The fall of the Berlin Wall and the reunification of Germany",
+        "The rise and fall of the Roman Empire",
+        "The Byzantine Empire and its influence on Europe",
+        "The Protestant Reformation",
+        "The Spanish Inquisition",
+        "The Hundred Years' War",
+        "The Black Death and its impact on Europe",
+        "The Age of Absolutism",
+        "The Enlightenment",
+        "The Napoleonic Wars",
+        "The Balkan Wars",
+        "The Irish Potato Famine"
     ]
 }
+
 '''
 
 data = json.loads(json_data)
 
 # Randomly choose a topic
-random_topic = random.choice(data["topics"])
 
 app = Flask(__name__)
 url = 'http://127.0.0.1:8082/make/question'
 
 @app.route('/start/question/')
 def question_topic():
+    random_number = random.randint(1, 99999)
+    random_topic = random.choice(data["topics"])
+
     client = OpenAI(
-        api_key='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'
+        api_key='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'
     )
     model = "gpt-3.5-turbo"
     temperature = 0.3
 
-    prompt = f"I want you to imagine that you are an expert in Computer Science, endowed with the highest technical and professional skills. One of your characteristics is that you love challenging people to guess a topic within this chosen school subject: {random_topic}. The challenge format is more oriented towards the 'Guess What' game."
+    prompt = f"I want you to replace the 'add here' part with the topic {random_topic} in the provided prompt, this subject will vary each time and you can not repeat, and then return the same prompt with this information added without any additional inserted text. Prompt: Imagine that you are an expert in 'add here', endowed with the highest technical and professional skills. One of your characteristics is that you love challenging people to guess a topic within your chosen school subject. The challenge format is more oriented towards the 'Guess What' game. Your response should focus only on posing the question, without introductory texts or anything similar."
     print(prompt)
     response = client.chat.completions.create(
         model=model,

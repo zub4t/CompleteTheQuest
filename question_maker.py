@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from openai import OpenAI
 import json
+import random
 
 import requests
 app = Flask(__name__)
@@ -10,17 +11,17 @@ url = 'http://127.0.0.1:8083/make/answer'
 def make_question():
     data = request.get_json()
     prompt = data.get('prompt')
-    
+    random_number = random.randint(1, 99999)
+
     client = OpenAI(
-        api_key='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'
+        api_key='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'
     )
     model = "gpt-3.5-turbo"
     temperature = 0.3
     response = client.chat.completions.create(
         model=model,
         messages=[
-            {"role": "system", "content": "You're the best teacher in the world"},
-            {"role": "user", "content": prompt},
+            {"role": "user", "content": f'{random_number} {prompt}'},
         ],
         temperature=temperature,
     )
@@ -38,10 +39,3 @@ def make_question():
 
 if __name__ == '__main__':
     app.run(port=8082)
-
-
-
-
-
-
-

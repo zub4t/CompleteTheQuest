@@ -8,14 +8,13 @@ def make_question():
     question = data.get('question')
     prompt = f'Answer the following question without adding anything else, just the strict answer: {question}'
     client = OpenAI(
-        api_key='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'
+        api_key='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'
     )
     model = "gpt-3.5-turbo"
     temperature = 0.3
     response = client.chat.completions.create(
         model=model,
         messages=[
-            {"role": "system", "content": "You are the best students ever"},
             {"role": "user", "content": prompt},
         ],
         temperature=temperature,
@@ -38,4 +37,3 @@ def make_question():
 
 if __name__ == '__main__':
     app.run(port=8083)
-
