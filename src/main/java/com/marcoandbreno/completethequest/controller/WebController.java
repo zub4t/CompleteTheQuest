@@ -1,6 +1,10 @@
 package com.marcoandbreno.completethequest.controller;
 
 import com.marcoandbreno.completethequest.common.DailyQuest;
+import com.marcoandbreno.completethequest.model.User;
+import com.marcoandbreno.completethequest.repository.FreqRepository;
+import com.marcoandbreno.completethequest.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class WebController {
+  @Autowired
+  private FreqRepository freqRepository;
+
+  @Autowired
+  private UserRepository userRepository;
+
+
 
   @GetMapping("/login")
   public String showLoginPage(Authentication authentication) {
@@ -19,16 +30,23 @@ public class WebController {
     return "login"; // Returns the login view if the user is not authenticated
   }
 
-  @GetMapping("/index")
+  @GetMapping("/")
   public String showIndexPage(Model model, Authentication authentication) {
-    String username = authentication.getName();
-    model.addAttribute("username", username);
 
-    // Read the content of the file and set it as the question attribute
-    model.addAttribute("question", DailyQuest.question);
+    User user = userRepository.findByUsername(authentication.getName());
+    boolean exists = freqRepository.findByUserId(user.getId()).size() > 0;
 
-    return "index";
+    if (exists) {
+      return "redirect:/points/user-points";
+    } else {
+      model.addAttribute("username", user.getUsername());
+
+      model.addAttribute("question", DailyQuest.question);
+      return "index";
+    }
+
+   
+
+
   }
-
- 
 }

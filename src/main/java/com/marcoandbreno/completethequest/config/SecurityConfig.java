@@ -28,7 +28,7 @@ public class SecurityConfig {
             .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/perform_login")
-                .defaultSuccessUrl("/index", true) // Redirect to index page upon successful login
+                .defaultSuccessUrl("/", true) // Redirect to index page upon successful login
                 .permitAll()
             .and()
             .logout()

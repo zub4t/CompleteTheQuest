@@ -1,8 +1,10 @@
 package com.marcoandbreno.completethequest.controller;
 
 import com.marcoandbreno.completethequest.common.DailyQuest;
+import com.marcoandbreno.completethequest.model.Freq;
 import com.marcoandbreno.completethequest.model.User;
 import com.marcoandbreno.completethequest.model.UserPoints;
+import com.marcoandbreno.completethequest.repository.FreqRepository;
 import com.marcoandbreno.completethequest.repository.UserPointsRepository;
 import com.marcoandbreno.completethequest.repository.UserRepository;
 import com.marcoandbreno.completethequest.service.UserService;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import java.time.LocalDateTime;
 
 @Controller
 public class QuizController {
@@ -24,6 +27,9 @@ public class QuizController {
 
   @Autowired
   private UserService userService;
+
+  @Autowired
+  private FreqRepository freqRepository;
 
   @PostMapping("/submit")
   public String submitAnswer(
@@ -41,7 +47,7 @@ public class QuizController {
     User user = userRepository.findById(userId).orElse(null);
     if (user == null) {
       model.addAttribute("message", "User not found.");
-      return "index";
+      return "redirect:/";
     }
 
     // Use Optional to handle both present and absent cases for UserPoints
@@ -61,6 +67,10 @@ public class QuizController {
       userPoints.setPoints(userPoints.getPoints() + 1);
       model.addAttribute("message", "Congratulations! Your answer is correct.");
       userPointsRepository.save(userPoints);
+      Freq freq = new  Freq();
+      freq.setCreatedAt(LocalDateTime.now());
+      freq.setUserId(userId);
+      freqRepository.save(freq);
       return "redirect:/points/user-points";
     } else {
       model.addAttribute("message", "Sorry, your answer is incorrect.");
@@ -68,6 +78,6 @@ public class QuizController {
     model.addAttribute("question", DailyQuest.question);
     model.addAttribute("username", username);
 
-    return "index";
+    return "redirect:/";
   }
 }

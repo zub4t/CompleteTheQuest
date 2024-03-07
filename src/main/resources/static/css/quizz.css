@@ -259,7 +259,8 @@ body {
 
 .big {
     font-weight: 800;
-    font-size: 3em
+    font-size: 3em;
+    text-align: center;
 }
 
 .normal {

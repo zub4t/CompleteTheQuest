@@ -98,7 +98,7 @@ def question_topic():
     model = "gpt-3.5-turbo"
     temperature = 0.3
 
-    prompt = f"I want you to replace the 'add here' part with {random_topic} in the provided prompt with a random school subject, this subject will vary each time and you can not repeat, and then return the same prompt with this information added without any additional inserted text. Prompt: Imagine that you are an expert in 'add here', endowed with the highest technical and professional skills. One of your characteristics is that you love challenging people to guess a topic within your chosen school subject. The challenge format is more oriented towards the 'Guess What' game. Your response should focus only on posing the question, without introductory texts or anything similar."
+    prompt = f"I want you to imagine that you are an expert in Computer Science, endowed with the highest technical and professional skills. One of your characteristics is that you love challenging people to guess a topic within this chosen school subject: {random_topic}. The challenge format is more oriented towards the 'Guess What' game."
     print(prompt)
     response = client.chat.completions.create(
         model=model,
