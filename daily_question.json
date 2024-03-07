@@ -1,4 +1,0 @@
-{
-  "question": "What is the purpose of a hash function in computer science?",
-  "answer": "A hash function is used to map data of arbitrary size to fixed-size values, typically for use in data structures such as hash tables or for ensuring data integrity through checksums."
-}
