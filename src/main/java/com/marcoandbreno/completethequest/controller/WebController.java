@@ -32,7 +32,7 @@ public class WebController {
 
   @GetMapping("/")
   public String showIndexPage(Model model, Authentication authentication) {
-
+    new DailyQuest(); // demo
     User user = userRepository.findByUsername(authentication.getName());
     boolean exists = freqRepository.findByUserId(user.getId()).size() > 0;
 

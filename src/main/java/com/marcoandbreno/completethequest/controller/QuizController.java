@@ -39,8 +39,7 @@ public class QuizController {
   ) {
     String username = authentication.getName();
     Long userId = userService.getUserIdByUsername(username);
-
-    boolean isCorrect = DailyQuest.answer.toLowerCase().contains(answer);
+    boolean isCorrect = DailyQuest.answer.toLowerCase().contains(answer.toLowerCase());
     User user = userRepository.findById(userId).orElse(null);
     if (user == null) {
       model.addAttribute("message", "User not found.");

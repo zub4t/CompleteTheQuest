@@ -200,7 +200,7 @@ body {
 .main {
     width: 100%;
     padding: 40px;
-    background: linear-gradient(to right, #2257e6, #477af5);
+    background: linear-gradient(to right, #f2606f, #c72939);
     color: #fff;
     border-radius: 0 0 25% 25%
 }
@@ -214,7 +214,9 @@ body {
 
 .title {
     margin: 0 0 40px;
-    font-weight: 800
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .card {
@@ -258,7 +260,7 @@ body {
 }
 
 .big {
-    font-weight: 800;
+    font-weight: 400;
     font-size: 3em;
     text-align: center;
 }
@@ -269,7 +271,8 @@ body {
 }
 
 .question {
-    font-size: 1rem
+    font-size: 1rem;
+    margin-top: 24px;
 }
 
 .questions {

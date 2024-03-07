@@ -2,8 +2,10 @@ from flask import Flask, request, jsonify
 from openai import OpenAI
 import json
 import random
-
+import sys
 import requests
+arguments = sys.argv
+
 app = Flask(__name__)
 url = 'http://127.0.0.1:8083/make/answer'
 
@@ -14,7 +16,7 @@ def make_question():
     random_number = random.randint(1, 99999)
 
     client = OpenAI(
-        api_key='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'
+        api_key=arguments[1]
     )
     model = "gpt-3.5-turbo"
     temperature = 0.3

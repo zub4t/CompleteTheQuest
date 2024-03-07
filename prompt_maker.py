@@ -3,6 +3,8 @@ from openai import OpenAI
 import json
 import requests
 import random
+import sys
+arguments = sys.argv
 
 json_data = '''
 {
@@ -45,7 +47,7 @@ def question_topic():
     random_topic = random.choice(data["topics"])
 
     client = OpenAI(
-        api_key='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'
+        api_key=arguments[1]
     )
     model = "gpt-3.5-turbo"
     temperature = 0.3

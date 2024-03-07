@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
 from openai import OpenAI
+import sys
 app = Flask(__name__)
+arguments = sys.argv
 
 @app.route('/make/answer', methods=['POST'])
 def make_question():
@@ -8,7 +10,7 @@ def make_question():
     question = data.get('question')
     prompt = f'Answer the following question without adding anything else, just the strict answer: {question}'
     client = OpenAI(
-        api_key='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'
+        api_key=arguments[1]
     )
     model = "gpt-3.5-turbo"
     temperature = 0.3
