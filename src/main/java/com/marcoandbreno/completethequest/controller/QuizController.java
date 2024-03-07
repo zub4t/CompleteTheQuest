@@ -60,13 +60,11 @@ public class QuizController {
     if (isCorrect) {
       userPoints.setPoints(userPoints.getPoints() + 1);
       model.addAttribute("message", "Congratulations! Your answer is correct.");
+      userPointsRepository.save(userPoints);
+      return "redirect:/points/user-points";
     } else {
       model.addAttribute("message", "Sorry, your answer is incorrect.");
     }
-
-    // Save or update UserPoints, depending on whether it was found
-    userPointsRepository.save(userPoints);
-
     model.addAttribute("question", DailyQuest.question);
     model.addAttribute("username", username);
 

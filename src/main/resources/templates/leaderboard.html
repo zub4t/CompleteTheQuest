@@ -16,7 +16,7 @@
       <use xlink:href="#cup"></use>
     </svg> Leaderboard
         </h1>
-        <ol style="list-style-type: none;">
+        <ol style="list-style-type: none;     position: relative;left: -19px;">
             <li th:each="userPoint : ${userPoints}">
                 <mark th:text="${userPoint.username}">Jerry Wood</mark>
                 <small th:text="${userPoint.points}">315</small>
